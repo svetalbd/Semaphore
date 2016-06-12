@@ -11,7 +11,7 @@ public class Runner {
 
     private SemaphoreImpl semaphore;
     Random next = new Random();
-    int permits = 5;
+    int permits = 4;
 
     public static void main(String[] args) throws InterruptedException {
         new Runner().test();
