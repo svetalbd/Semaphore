@@ -36,9 +36,9 @@ public class SemaphoreImpl implements Semaphore {
 
     @Override
     public void acquire(int permits) {
-        if (freePermits < permits || freePermits > 0 || permits > 0) {
+        if (freePermits < permits || freePermits < 0) {
             System.out.println("ERROR: free permits = [" + freePermits + "]");
-            System.out.println("ERROR: permits = [" + permits + "]");
+            System.out.println("ERROR: required permits = [" + permits + "]");
         } else {
             synchronized (lock) {
                 freePermits -= permits;
@@ -62,7 +62,7 @@ public class SemaphoreImpl implements Semaphore {
         synchronized (lock) {
             if (permits < 0) {
                 System.out.println("ERROR: free permits = [" + freePermits + "]");
-                System.out.println("ERROR: permits = [" + permits + "]");
+                System.out.println("ERROR: required permits = [" + permits + "]");
             }
             if (freePermits + permits >=MAX_FLOW_NUMBER) {
                 freePermits += permits;
