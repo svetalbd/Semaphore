@@ -36,7 +36,7 @@ public class SemaphoreImpl implements Semaphore {
 
     @Override
     public void acquire(int permits) {
-        if (freePermits < permits && freePermits > 0 && permits > 0) {
+        if (freePermits < permits || freePermits > 0 || permits > 0) {
             System.out.println("ERROR: free permits = [" + freePermits + "]");
             System.out.println("ERROR: permits = [" + permits + "]");
         } else {
